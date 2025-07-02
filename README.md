@@ -8,7 +8,7 @@ A modern, secure, and well-tested RESTful API for ToDo List management. Built wi
 
 > _Tambahkan link atau embed video demo aplikasi di sini_
 >
-> [[Demo Video]](https://youtube.com/watch?v=VIDEO_ID)
+> [[Demo Video]](https://drive.google.com/file/d/12bK29eIeyzbUABenNoIyQiNj9mUmBPrK/view?usp=drive_link)
 
 ---
 
@@ -42,6 +42,8 @@ A modern, secure, and well-tested RESTful API for ToDo List management. Built wi
 
 - Swagger UI: http://localhost:3000/api-docs
 - Semua endpoint, request, response, dan error sudah terdokumentasi otomatis.
+![image](https://github.com/user-attachments/assets/9cc36350-3480-4b4d-bf42-94ff9926ee51)
+
 
 ## 🧑‍💻 How to run it
 
