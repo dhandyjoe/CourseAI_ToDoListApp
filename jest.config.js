@@ -15,7 +15,8 @@ module.exports = {
 		'text',
 		'text-summary',
 		'html',
-		'lcov'
+		'lcov',
+		'json-summary'
 	],
 	coverageThreshold: {
 		global: {

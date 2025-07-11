@@ -1,5 +1,8 @@
 # 📋 ToDo List App Backend
 
+[![Unit Tests](https://github.com/dhandyjoe/CourseAI_ToDoListApp/actions/workflows/test.yml/badge.svg)](https://github.com/dhandyjoe/CourseAI_ToDoListApp/actions/workflows/test.yml)
+[![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)](https://github.com/dhandyjoe/CourseAI_ToDoListApp)
+
 A modern, secure, and well-tested RESTful API for ToDo List management. Built with Express.js, TypeScript, JWT authentication, and full Swagger (OpenAPI) documentation.
 
 ---
@@ -18,6 +21,22 @@ A modern, secure, and well-tested RESTful API for ToDo List management. Built wi
 - **Input Validation** (register, login, list)
 - **Repository Pattern** (Memory & SQL ready)
 - **Unit Testing** (Jest + Supertest)
+- **CI/CD Pipeline** (GitHub Actions)
+
+---
+
+## 🚀 CI/CD Pipeline
+
+### GitHub Actions Workflow
+- **Automatic Testing**: Unit tests run on every push to any branch
+- **Multi-Node Testing**: Tests pada Node.js 18.x dan 20.x
+- **Coverage Reports**: Generate dan upload coverage reports
+- **PR Integration**: Otomatis comment coverage pada Pull Requests
+- **Quality Gates**: Minimum 70% coverage threshold
+
+### Workflow Triggers
+- Push ke branch manapun
+- Pull Request ke branch manapun
 
 ---
 
@@ -92,9 +111,34 @@ Proyek ini memiliki **163 unit tests** dengan coverage yang sangat baik:
 
 ### ⚙️ Test Commands
 ```sh
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
 # Generate coverage report
 npm run test:coverage
+
+# Generate and open coverage report
+npm run test:coverage:open
 ```
+
+### 🔄 CI/CD Integration
+- **GitHub Actions**: Otomatis run tests pada setiap push
+- **Coverage Tracking**: Upload coverage ke Codecov
+- **Quality Gates**: Minimum 70% coverage threshold
+- **Multi-Node Testing**: Test pada Node.js 18.x dan 20.x
+
+### 📊 Coverage by Module
+- **Controllers**: 100% coverage (listController.ts)
+- **Middlewares**: 100% coverage (authMiddleware.ts)
+- **Routes**: 100% coverage dengan beberapa branch belum ter-cover
+- **Repositories**: 78.94% coverage (SqlUserRepository belum ditest)
+
+### 🎯 Coverage Threshold
+Jest dikonfigurasi dengan minimum threshold 70% untuk:
+- Branches, Functions, Lines, dan Statements
 
 ## Proteksi Endpoint
 - Semua endpoint List (CRUD) wajib Bearer token JWT.
