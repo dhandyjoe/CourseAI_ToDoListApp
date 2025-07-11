@@ -1,7 +1,7 @@
 # 📋 ToDo List App Backend
 
 [![Unit Tests](https://github.com/dhandyjoe/CourseAI_ToDoListApp/actions/workflows/test.yml/badge.svg)](https://github.com/dhandyjoe/CourseAI_ToDoListApp/actions/workflows/test.yml)
-[![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)](https://github.com/dhandyjoe/CourseAI_ToDoListApp)
+[![codecov](https://codecov.io/gh/dhandyjoe/CourseAI_ToDoListApp/branch/master/graph/badge.svg)](https://codecov.io/gh/dhandyjoe/CourseAI_ToDoListApp)
 
 A modern, secure, and well-tested RESTful API for ToDo List management. Built with Express.js, TypeScript, JWT authentication, and full Swagger (OpenAPI) documentation.
 
@@ -29,10 +29,17 @@ A modern, secure, and well-tested RESTful API for ToDo List management. Built wi
 
 ### GitHub Actions Workflow
 - **Automatic Testing**: Unit tests run on every push to any branch
-- **Multi-Node Testing**: Tests pada Node.js 18.x dan 20.x
-- **Coverage Reports**: Generate dan upload coverage reports
+- **Node.js Testing**: Tests pada Node.js 18.x (configurable untuk multi-version)
+- **Coverage Reports**: Generate dan upload coverage reports ke Codecov
 - **PR Integration**: Otomatis comment coverage pada Pull Requests
 - **Quality Gates**: Minimum 70% coverage threshold
+- **Fast Feedback**: Results tersedia dalam ~2-3 menit
+
+### Codecov Integration
+- **Real-time Coverage**: Badge coverage yang update otomatis
+- **Trend Analysis**: Tracking coverage changes over time
+- **PR Coverage**: Detailed coverage report pada setiap Pull Request
+- **Coverage Visualization**: Grafik dan statistik coverage
 
 ### Workflow Triggers
 - Push ke branch manapun
@@ -126,9 +133,11 @@ npm run test:coverage:open
 
 ### 🔄 CI/CD Integration
 - **GitHub Actions**: Otomatis run tests pada setiap push
-- **Coverage Tracking**: Upload coverage ke Codecov
+- **Codecov Integration**: Real-time coverage tracking dan reporting
 - **Quality Gates**: Minimum 70% coverage threshold
-- **Multi-Node Testing**: Test pada Node.js 18.x dan 20.x
+- **Node.js Testing**: Test pada Node.js 18.x (configurable)
+- **PR Coverage**: Detailed coverage analysis pada Pull Requests
+- **Status Checks**: Automated pass/fail berdasarkan coverage
 
 ### 📊 Coverage by Module
 - **Controllers**: 100% coverage (listController.ts)
@@ -144,6 +153,162 @@ Jest dikonfigurasi dengan minimum threshold 70% untuk:
 - Semua endpoint List (CRUD) wajib Bearer token JWT.
 - Jika token tidak ada: `{ message: "Token tidak ada" }` (401)
 - Jika token tidak valid: `{ message: "Token tidak sesuai" }` (401)
+
+---
+
+## 📖 Documentation
+
+### 🔧 Setup & Configuration
+
+#### Codecov Integration
+1. **Repository Setup**
+   - Buka [Codecov.io](https://codecov.io) dan login dengan GitHub
+   - Pilih repository `CourseAI_ToDoListApp` dan activate
+   - No token required untuk public repositories
+
+2. **GitHub Actions Configuration**
+   - Workflow: `.github/workflows/test.yml`
+   - Triggers: Push dan Pull Request ke semua branch
+   - Node.js version: 18.x (dapat diubah ke matrix untuk multi-version)
+
+#### Local Development
+```bash
+# Install dependencies
+npm install
+
+# Run tests
+npm test
+
+# Run tests dengan coverage
+npm run test:coverage
+
+# Run tests dalam watch mode
+npm run test:watch
+
+# Generate dan buka coverage report
+npm run test:coverage:open
+```
+
+### 🚀 CI/CD Pipeline Details
+
+#### Workflow Steps
+1. **Environment Setup**: Ubuntu latest dengan Node.js 18.x
+2. **Code Checkout**: Download source code dari repository
+3. **Dependencies Install**: `npm install` untuk install packages
+4. **Unit Tests**: Run semua test suites (163 tests)
+5. **Coverage Generation**: Generate coverage report dalam format LCOV
+6. **Codecov Upload**: Upload coverage data ke Codecov
+7. **PR Comments**: Auto-comment coverage report pada Pull Requests
+
+#### Quality Gates
+- **Minimum Coverage**: 70% untuk statements, branches, functions, lines
+- **Coverage Tolerance**: 1% threshold untuk fluktuasi
+- **Status Checks**: Pass/fail berdasarkan coverage threshold
+- **Automated Reporting**: Coverage trends dan analysis
+
+### 📊 Coverage Configuration
+
+#### Jest Configuration
+```javascript
+// jest.config.js
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/*.d.ts',
+    '!src/index.ts',
+    '!src/config/**',
+    '!src/migrations/**'
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 70,
+      functions: 70,
+      lines: 70,
+      statements: 70
+    }
+  }
+};
+```
+
+#### Codecov Configuration
+```yaml
+# codecov.yml
+coverage:
+  precision: 2
+  range: "70...100"
+  status:
+    project:
+      default:
+        target: 70%
+        threshold: 1%
+```
+
+### 🔍 Monitoring & Reports
+
+#### Status Badges
+- **Tests**: [![Unit Tests](https://github.com/dhandyjoe/CourseAI_ToDoListApp/actions/workflows/test.yml/badge.svg)](https://github.com/dhandyjoe/CourseAI_ToDoListApp/actions/workflows/test.yml)
+- **Coverage**: [![codecov](https://codecov.io/gh/dhandyjoe/CourseAI_ToDoListApp/branch/master/graph/badge.svg)](https://codecov.io/gh/dhandyjoe/CourseAI_ToDoListApp)
+
+#### Dashboard Links
+- **Codecov Dashboard**: https://codecov.io/gh/dhandyjoe/CourseAI_ToDoListApp
+- **GitHub Actions**: https://github.com/dhandyjoe/CourseAI_ToDoListApp/actions
+- **Workflow Runs**: https://github.com/dhandyjoe/CourseAI_ToDoListApp/actions/workflows/test.yml
+
+#### Coverage Features
+- **Real-time Updates**: Badge dan dashboard update otomatis
+- **Trend Analysis**: Tracking coverage changes over time
+- **File-level Coverage**: Detail coverage untuk setiap file
+- **PR Integration**: Coverage diff dan analysis pada Pull Requests
+- **Branch Comparison**: Compare coverage antar branches
+
+### 🛠️ Troubleshooting
+
+#### Common Issues
+1. **Dependencies Installation Failed**
+   ```bash
+   Error: Dependencies lock file is not found
+   ```
+   **Solution**: Workflow menggunakan `npm install` bukan `npm ci`
+
+2. **Tests Failed**
+   ```bash
+   Test Suites: 1 failed, 5 passed
+   ```
+   **Solution**: Check Actions tab untuk detailed error logs
+
+3. **Coverage Upload Failed**
+   ```bash
+   Codecov upload failed
+   ```
+   **Solution**: Verify Codecov repository activation dan configuration
+
+#### Debug Steps
+- Check GitHub Actions tab untuk detailed logs
+- Verify semua test files valid dan dapat dijalankan
+- Ensure coverage files generated di `coverage/` directory
+- Review Jest configuration untuk coverage settings
+
+### 📈 Best Practices
+
+#### Code Quality
+- Maintain minimum 70% test coverage
+- Write descriptive test cases
+- Test both success dan error scenarios
+- Use proper mocking untuk external dependencies
+
+#### CI/CD Optimization
+- Use dependency caching jika ada lock file
+- Parallelize independent jobs
+- Set appropriate timeouts
+- Monitor workflow execution time
+
+#### Coverage Management
+- Review coverage reports regularly
+- Identify untested code areas
+- Prioritize testing critical business logic
+- Use coverage trends untuk quality decisions
 
 ---
 
